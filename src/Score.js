@@ -1,53 +1,30 @@
 import React, { useState } from "react";
 
 function Score() {
-  const [score, setScore] = useState("0")
+  const [score, setScore] = useState(0)
+
+  const handleScore = (e) => {
+    if(e.target.value > score) {
+      // console.log(e.target.value)
+      // console.log(score)
+      setScore(e.target.value)
+      alert(`Score updated. Current Score: ${e.target.value}`)
+    } else if (score > e.target.value) {
+      setScore(score)
+      // console.log(e.target.value)
+      // console.log(score)
+      alert('Score not updated. Input score needs to be higher than current score')
+    }
+  }
 
   return (
     <>
     <h3>Score: {score}</h3>
     <label>Give a Score: </label>
-    <input type = "number" onChange = {e => setScore(e.target.value)} />
-    <span style = {{color:'red'}}> Input score needs to be higher than current score</span>
+    <input type = "number" onChange = {e => handleScore(e)} />
     </>
     
   )
 }
 
 export default Score
-
-//WIP class component version below
-//import React, { Component } from 'react'
-
-// class Score extends Component {
-//   state = {
-//     score: 0,
-//     valid: false
-//   }
-//   handleScore = () => {
-
-//     this.setState({
-//       score: 3,
-//       valid: true
-//     })   
-//   }
-
-//   handleChange = (e) => {
-//     console.log(e)
-//     console.log(e.target.value)
-//   }
-  
-//   render() {
-    
-//     return (
-//       <>
-//       <h3>Score: {this.state.score}</h3>
-//       <label>Give a Score: </label>
-//       <input type = "number" onChange = {this.handleChange}/>
-//       <button type = "button" onClick = {this.handleScore}>Submit Score</button>
-//       </>
-//     )
-//   }
-// }
-
-// export default Score
